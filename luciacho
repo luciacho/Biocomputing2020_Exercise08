@@ -1,0 +1,38 @@
+### Question 1
+# Define data frame so you can read from it
+file_name<-"UWvMSU_1-22-13.txt"
+dat<-read.table(file=file_name, header=TRUE, sep="/t")
+
+# Starting at zero, create a list of x values for the plot
+x_vals<-c(0,dat[ ,1])
+
+# Empty data fram and store UW and MSU scores
+MSU_scores<-data.frame(0)
+UW_scores<-data.frame(0)
+
+# Each team will start with zero points
+current_MSU_points<-0
+current_UW_points<-0 
+
+# Loop through each team 
+# Add points (according)
+size<-nrow(dat)
+for(i in 1:size) {
+  if(dat[i,2]=="MSU"){
+    current_MSU_points<-current_MSU_points+dat[i,3]
+  }
+  if(dat[i,2]=="UW"){
+    current_UW_points<-current_UW_points+dat[i,3]
+  }
+  # Add the calculated scores to correct the data frame 
+  MSU_scores[i+1]<-current_MSU_points
+  UW_scores[i+1]<-current_UW_points
+}
+
+# Plot the MSU scores in blue 
+plot(x_vals, MSU_scores, type="l", col="blue", xlab="Time (Minutes)", ylab = "Points")
+# Plot the UW scores in red
+lines(x_vals, UW_scores, types = "l", col="red")
+# Add a title and legend
+title("MSU scores vs UW scores")
+legend(25,25,legend=c("MSU scores","UW scores"),col=c("blue","red"), lty=1)
