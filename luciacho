@@ -37,3 +37,31 @@ lines(x_vals, UW_scores, types = "l", col="red")
 # Add a title and legend
 title("MSU scores vs UW scores")
 legend(25,25,legend=c("MSU scores","UW scores"),col=c("blue","red"), lty=1)
+
+
+### Question 2
+## Guess My Number Game
+# Generate a random number between 1 and 100
+rand_num<-sample(1:100,1, replace=TRUE)
+
+# Ask the user to guess the number and read the user's guess
+print("I'm thinking of a number 1-100...")
+
+# The user can guess up to 10 times
+# A for loop is used to show this
+for(i in 1:10){
+  guess<-readline(prompt="Guess: ")
+  guess<-as.integer(guess)
+  # If the random number is lower than the guess
+  if(rand_num<guess){
+  print("Lower")
+  # If the random number is higher than the guess
+  else if(rand_num>guess){
+  print("Higher")
+  }
+  # If the random number is the same as the guess
+  else{
+    print("Correct!")
+    break
+  }
+}
