@@ -1,4 +1,5 @@
 ### Question 1
+## Sports Teams Data
 # Define data frame so you can read from it
 file_name<-"UWvMSU_1-22-13.txt"
 dat<-read.table(file=file_name, header=TRUE, sep="/t")
